@@ -1,0 +1,397 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #1e293b;
+}
+
+/* LAYOUT */
+.layout {
+  display: flex;
+  height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background: linear-gradient(180deg, #0f172a, #020617);
+  color: #e2e8f0;
+  padding: 25px 15px;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar button {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #cbd5e1;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.sidebar button:hover {
+  background: #1e293b;
+  color: white;
+}
+
+/* CONTEÚDO */
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NAVBAR */
+.navbar {
+  background: white;
+  padding: 15px 25px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar button {
+  background: #ef4444;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 14px;
+}
+
+/* PAGE */
+.page {
+  padding: 30px;
+}
+
+/* CARDS */
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+/* DASHBOARD GRID */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.dashboard-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  transition: 0.2s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-3px);
+}
+
+.dashboard-card h3 {
+  font-size: 13px;
+  color: #64748b;
+}
+
+.dashboard-card p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* PERFIL */
+.profile-card {
+  max-width: 750px;
+  margin: auto;
+}
+
+/* HEADER PERFIL */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 15px;
+}
+
+.avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.profile-info span {
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* FORM */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #475569;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 5px;
+}
+
+input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+
+/* BOTÕES */
+button {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+button.danger {
+  background: #ef4444;
+}
+
+button.danger:hover {
+  background: #dc2626;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* ===== AUTH PADRÃO SISTEMA (NOVO) ===== */
+
+.auth-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f6fb; /* mesmo fundo do sistema */
+}
+
+.auth-box {
+  width: 420px;
+  background: #ffffff;
+  padding: 35px;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  animation: fadeIn 0.3s ease;
+}
+
+/* HEADER */
+.auth-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.auth-header h2 {
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.auth-header p {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* INPUT PADRÃO */
+.auth-box input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 5px;
+  transition: 0.2s;
+}
+
+.auth-box input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99,102,241,0.2);
+  outline: none;
+}
+
+/* BOTÃO PADRÃO DO SISTEMA */
+.auth-btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 500;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-btn:hover {
+  background: #4f46e5;
+}
+
+/* SWITCH LOGIN/CADASTRO */
+.switch-auth {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.switch-auth span {
+  color: #6366f1;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.switch-auth span:hover {
+  text-decoration: underline;
+}
+
+/* MENSAGEM */
+.msg {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* animação suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== ANIMAÇÃO LOGIN / REGISTER ===== */
+
+.auth-form {
+  position: relative;
+  overflow: hidden;
+}
+
+/* wrapper pra animar tudo junto */
+.form-wrapper {
+  animation: fadeSwitch 0.35s ease;
+}
+
+/* animação individual dos campos */
+.fade-slide {
+  animation: slideFade 0.35s ease;
+}
+
+/* animação principal */
+@keyframes fadeSwitch {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* campos entrando */
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== FLIP CARD AUTH ===== */
+
+.auth-container {
+  perspective: 1200px;
+}
+
+/* CARD QUE VIRA */
+.auth-card {
+  width: 420px;
+  height: 480px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+/* QUANDO TROCA */
+.auth-card.flip {
+  transform: rotateY(180deg);
+}
+
+/* FACES */
+.auth-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* FRENTE */
+.auth-front {
+  z-index: 2;
+}
+
+/* VERSO */
+.auth-back {
+  transform: rotateY(180deg);
+}
+
+/* BOX INTERNO */
+.auth-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
