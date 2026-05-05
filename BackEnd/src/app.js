@@ -1,8 +1,10 @@
 import "dotenv/config";
-import express from "express";
 import cors from "cors";
+import express from "express";
 import corsConfig from './config/cors.js';
 import sequelize from "./config/database.js";
+import { helmetConfig } from './config/helmet.js';
+import { limitadorGlobal } from "./config/rateLimit.js";
 
 
 import "./models/user.model.js";
@@ -10,8 +12,11 @@ import "./models/user.model.js";
 import routerAuth from "./router/auth.routes.js";
 import routerUser from "./router/user.router.js";
 
+
 const app = express();
 app.use(cors(corsConfig));
+app.use(helmetConfig);
+app.use(limitadorGlobal);
 app.use(express.json());
 
 // Rotas
