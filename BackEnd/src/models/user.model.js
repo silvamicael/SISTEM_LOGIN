@@ -18,14 +18,16 @@ export const User = sequelize.define(
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true
-            }
+            unique: true
         },
 
         senha: {
             type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        tipo: {
+            type: DataTypes.ENUM('aluno', 'professor'),
             allowNull: false
         },
 

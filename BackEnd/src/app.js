@@ -6,11 +6,13 @@ import sequelize from "./config/database.js";
 import { helmetConfig } from './config/helmet.js';
 import { limitadorGlobal } from "./config/rateLimit.js";
 
-
+import "./models/turma.model.js";
+import "./models/aluno.model.js";
 import "./models/user.model.js";
 
 import routerAuth from "./router/auth.routes.js";
 import routerUser from "./router/user.router.js";
+import routerAluno from "./router/aluno.router.js";
 
 
 const app = express();
@@ -22,6 +24,7 @@ app.use(express.json());
 // Rotas
 app.use("/auth", routerAuth);
 app.use("/usuario", routerUser);
+app.use("/alunos", routerAluno);
 
 // Inicialização do servidor
 sequelize.sync({ alter: true })

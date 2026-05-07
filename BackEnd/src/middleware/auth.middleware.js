@@ -25,7 +25,7 @@ async function authJWT(req, res, next) {
 function checkRole(role) {
   return function(req, res, next) {
 
-    const role_user = req.usuario.role_user;
+    const role_user = req.usuario.tipo;
 
     // Verifica se o papel do usuário é igual ao papel exigido
     if (!role_user.includes(role)) {

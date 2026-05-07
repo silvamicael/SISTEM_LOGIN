@@ -1,112 +1,183 @@
+// auth.controller.js
+
 import { User } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
+// =========================
+// CADASTRO
+// =========================
 
 export async function createUser(req, res) {
-    try {
-        const { nome, email, senha } = req.body;
 
-        if (!nome || !email || !senha) {
+    try {
+
+        const {
+            nome,
+            email,
+            senha,
+            tipo
+        } = req.body;
+
+        // VALIDAÇÃO
+        if (!nome || !email || !senha || !tipo) {
+
             return res.status(400).json({
-                erro: "Nome, email e senha são obrigatórios"
+                erro: 'Nome, email, senha e tipo são obrigatórios'
             });
+
         }
 
+        // VALIDA TIPO
+        if (!['aluno', 'professor'].includes(tipo)) {
+
+            return res.status(400).json({
+                erro: 'Tipo inválido'
+            });
+
+        }
+
+        // VERIFICA EMAIL
         const usuarioExistente = await User.findOne({
             where: { email }
         });
 
         if (usuarioExistente) {
+
             return res.status(409).json({
-                erro: "E-mail já cadastrado"
+                erro: 'E-mail já cadastrado'
             });
+
         }
+
+        // HASH SENHA
         const hashSenha = await bcrypt.hash(senha, 10);
 
+        // CRIA USUÁRIO
         const userCreate = await User.create({
+
             nome,
             email,
-            senha: hashSenha
+            senha: hashSenha,
+            tipo
+
         });
 
+        // REMOVE SENHA
         const userSemSenha = userCreate.toJSON();
+
         delete userSemSenha.senha;
 
-        return res.status(201).json(userSemSenha);
+        return res.status(201).json({
+            mensagem: 'Usuário criado com sucesso',
+            usuario: userSemSenha
+        });
 
     } catch (error) {
+
+        console.error(error);
+
         return res.status(500).json({
-            erro: "Erro interno do servidor"
+            erro: 'Erro interno do servidor'
         });
+
     }
-};
+}
+
+// =========================
+// LOGIN
+// =========================
 
 export async function login(req, res) {
+
     try {
+
         const { email, senha } = req.body;
 
-        // Validação dos campos obrigatórios
+        // VALIDAÇÃO
         if (!email || !senha) {
+
             return res.status(400).json({
-                erro: "E-mail e senha são obrigatórios"
+                erro: 'E-mail e senha são obrigatórios'
             });
+
         }
 
-        // Busca usuário pelo e-mail
+        // BUSCA USUÁRIO
         const usuario = await User.findOne({
             where: { email }
         });
 
+        // VERIFICA USUÁRIO
         if (!usuario) {
-            return res.status(400).json({
-                erro: "Falha ao fazer login"
+
+            return res.status(404).json({
+                erro: 'Usuário não encontrado'
             });
+
         }
 
-        // Verifica se a conta está desativada
+        // CONTA DESATIVADA
         if (usuario.ativo === false) {
+
             return res.status(403).json({
-                erro: "Conta desativada"
+                erro: 'Conta desativada'
             });
+
         }
 
-        // Compara a senha digitada com o hash salvo
+        // VERIFICA SENHA
         const senhaValida = await bcrypt.compare(
             senha,
             usuario.senha
         );
 
         if (!senhaValida) {
+
             return res.status(401).json({
-                erro: "Credenciais inválidas"
+                erro: 'Credenciais inválidas'
             });
+
         }
 
-        // Remove a senha antes de retornar
+        // REMOVE SENHA
         const usuarioSemSenha = usuario.toJSON();
+
         delete usuarioSemSenha.senha;
 
-        // Gera token JWT
+        // GERA TOKEN JWT
         const token = jwt.sign(
-            usuarioSemSenha,
+
+            {
+                id: usuario.id,
+                tipo: usuario.tipo
+            },
+
             process.env.JWT_SECRET,
+
             {
                 expiresIn: process.env.JWT_EXPIRES_IN
             }
+
         );
 
         return res.status(200).json({
-            mensagem: "Acesso autorizado",
+
+            mensagem: 'Acesso autorizado',
+
             token,
+
             usuario: usuarioSemSenha
+
         });
 
     } catch (error) {
+
         console.error(error);
 
         return res.status(500).json({
-            erro: "Erro interno do servidor"
+            erro: 'Erro interno do servidor'
         });
+
     }
-};
+}
