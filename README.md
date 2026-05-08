@@ -47,7 +47,13 @@ src/
 ```bash
 
 Dependências principais
+
+BackEnd
 npm install express sequelize mysql2 bcrypt jsonwebtoken dotenv
+npm install
+
+FrontEnd
+npm install
 
 ````
 ---
@@ -56,8 +62,6 @@ npm install express sequelize mysql2 bcrypt jsonwebtoken dotenv
 
 ```bash
 git clone https://github.com/silvamicael/SISTEM_LOGIN.git
-cd SISTEM_LOGIN
-npm install
 
 Crie um arquivo .env:
 
