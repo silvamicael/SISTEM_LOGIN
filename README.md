@@ -42,7 +42,7 @@ src/
 ````
 ---
 
-##📦 Dependências do Projeto
+## 📦 Dependências do Projeto
 
 ```bash
 
