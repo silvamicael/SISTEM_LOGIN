@@ -42,6 +42,16 @@ src/
 ````
 ---
 
+##📦 Dependências do Projeto
+
+```bash
+
+Dependências principais
+npm install express sequelize mysql2 bcrypt jsonwebtoken dotenv
+
+````
+---
+
 ## ⚙️ Setup
 
 ```bash
