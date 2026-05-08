@@ -40,22 +40,7 @@ src/
 └─ middlewares/ # Validações e autenticação
 
 ````
----
 
-## 📦 Dependências do Projeto
-
-```bash
-
-Dependências principais
-
-BackEnd
-npm install express sequelize mysql2 bcrypt jsonwebtoken dotenv
-npm install
-
-FrontEnd
-npm install
-
-````
 ---
 
 ## ⚙️ Setup
@@ -70,6 +55,15 @@ DB_USER=root
 DB_PASSWORD=sua_senha
 DB_NAME=sistema_login
 JWT_SECRET=seu_token
+
+Instale as dependências  
+
+BackEnd  
+npm install express sequelize mysql2 bcrypt jsonwebtoken dotenv
+npm install
+
+FrontEnd
+npm install
 
 Execute:
 
